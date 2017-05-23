@@ -55,10 +55,18 @@ Ryan Chen,01 March – 31 March,10000,2696,7304,1000
 * node.js (v6.10.3+)
 
 ### Installation
-* npm install
-* npm install -g jasmine
+1. install node.js
+2. run the following commands from the root project's directory
+    1. npm install
+    2. npm install -g jasmine
 
 ### Launch
-* Sample project: npm start
-* Test-cases: npm test
+* Run sample project: npm start
+* Run test-cases: npm test
 
+### Features
+* It's easy to add new input and output formats for the data storage
+
+### Assumptions
+* The data types are not verified during the calculations (Payslip class)
+* The format of the input CSV file is not verified (PayslipInputCSV class)
