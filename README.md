@@ -48,3 +48,17 @@ Output (name, pay period, gross income, income tax, net income, super):
 David Rudd,01 March – 31 March,5004,922,4082,450
 Ryan Chen,01 March – 31 March,10000,2696,7304,1000
 ```
+
+## Solution
+
+### Requirements
+* node.js (v6.10.3+)
+
+### Installation
+* npm install
+* npm install -g jasmine
+
+### Launch
+* Sample project: npm start
+* Test-cases: npm test
+
