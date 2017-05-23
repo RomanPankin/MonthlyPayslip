@@ -10,7 +10,7 @@ const writer_screen = require('./writers/payslip-output');
 // Streams
 let inputStream = new reader.PayslipInputCSV(__dirname + "/../samples/input/sample01.csv");
 let outputStream = new writer.PayslipOutputCSV(__dirname + "/../samples/output/sample01.csv");
-let outputStream2 = new writer_screen.PayslipOutput(__dirname + "/../samples/output/sample01zzz.csv");
+let outputStream2 = new writer_screen.PayslipOutput();
 let transformer = new payslip.Payslip();
 
 

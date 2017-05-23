@@ -16,7 +16,7 @@ const stream = require('stream');
  *      superIncome             - gross income x super rate
  */
 class PayslipOutput extends stream.Transform {
-    constructor(filename) {
+    constructor() {
         super({ objectMode: true });
     }
 
