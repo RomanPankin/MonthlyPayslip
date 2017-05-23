@@ -1,3 +1,6 @@
+/**
+ * Module reads information about an employee from a CSV file
+ */
 const fs = require('fs');
 const parse = require('csv-parse');
 const transform = require('stream-transform');
@@ -6,7 +9,7 @@ const transform = require('stream-transform');
 /**
  * Reads CSV file, converts each row into JSON-object and sends it into the pipe
  */
-class ReaderCSV extends parse.Parser {
+class PayslipInputCSV extends parse.Parser {
     constructor(filename) {
         super({delimiter: ','});
 
@@ -19,7 +22,7 @@ class ReaderCSV extends parse.Parser {
                     firstName : record[0],
                     lastName : record[1],
                     annualSalary : parseInt(record[2]),
-                    superRate : record[3],
+                    superRate : parseFloat(record[3]),
                     payPeriod : record[4]
                 });
             }));
@@ -30,4 +33,4 @@ class ReaderCSV extends parse.Parser {
     }
 }
 
-module.exports = ReaderCSV;
+module.exports = { PayslipInputCSV : PayslipInputCSV };
