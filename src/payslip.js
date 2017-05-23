@@ -2,6 +2,7 @@
  * Module calculates an employee's payslip
  */
 let stream = require('stream');
+var extend = require('util')._extend;
 
 
 /**
@@ -17,13 +18,10 @@ const TAX_TABLE = [
 
 /**
  * Input format:
- *      firstName
- *      lastName
- *      annualSalary
- *      superRate
- *      payPeriod
+ *      firstName, lastName, annualSalary, superRate, payPeriod
  *
  * Output format:
+ *      firstName, lastName, annualSalary, superRate, payPeriod,
  *      payPeriod               - per calendar month
  *      grossIncome             - annual salary/12 months
  *      incomeTax               - based on the tax table
@@ -55,7 +53,7 @@ class Payslip extends stream.Transform {
             }
 
         if (!taxInfo)
-            throw new Error("Tax information was not found");
+            return null;
 
         // Calculate result
         let grossIncome = Math.round(annualSalary/12);
@@ -63,13 +61,12 @@ class Payslip extends stream.Transform {
         let netIncome = grossIncome - incomeTax;
         let superIncome = Math.round(grossIncome * data.superRate);
 
-        return {
-            payPeriod : data.payPeriod,
+        return extend(data, {
             grossIncome : grossIncome,
             incomeTax : incomeTax,
             netIncome : netIncome,
             superIncome : superIncome
-        };
+        });
     }
 }
 

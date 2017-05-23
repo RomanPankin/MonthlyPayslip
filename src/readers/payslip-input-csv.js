@@ -22,7 +22,7 @@ class PayslipInputCSV extends parse.Parser {
                     firstName : record[0],
                     lastName : record[1],
                     annualSalary : parseInt(record[2]),
-                    superRate : parseFloat(record[3]),
+                    superRate : parseFloat(record[3])/100,
                     payPeriod : record[4]
                 });
             }));

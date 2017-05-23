@@ -10,11 +10,8 @@ const stream = require('stream');
  * Writes information into the CSV file
  *
  * Input format:
- *      payPeriod               - per calendar month
- *      grossIncome             - annual salary/12 months
- *      incomeTax               - based on the tax table
- *      netIncome               - gross income - income tax
- *      superIncome             - gross income x super rate
+ *      firstName, lastName, annualSalary, superRate, payPeriod,
+ *      payPeriod, grossIncome, incomeTax, netIncome, superIncome
  */
 class PayslipOutputCSV extends stream.Transform {
     constructor(filename) {
@@ -24,7 +21,15 @@ class PayslipOutputCSV extends stream.Transform {
     }
 
     _transform(data, encoding, callback) {
-        let input = [ [data.payPeriod, data.grossIncome, data.incomeTax, data.netIncome, data.superIncome] ];
+        let input = [[
+            `${data.firstName} ${data.lastName}`,
+            data.payPeriod,
+            data.grossIncome,
+            data.incomeTax,
+            data.netIncome,
+            data.superIncome
+        ]];
+
         stringify(input, (err, output) => {
             this._file.write(output);
             callback(null, data);
